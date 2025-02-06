@@ -37,3 +37,21 @@ jobs:
         
       - run: poetry install --no-root
   
+   test-pipenv-cache:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+     
+      - name: Set up Python
+        uses: priyagupta108/setup-python@test-pr-973
+        with:
+          python-version: '3.13.1t'
+          cache: 'pipenv'
+        
+      - name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+      - run: pipenv install
