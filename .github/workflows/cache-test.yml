@@ -35,5 +35,7 @@ jobs:
         with:
           python-version: '3.13.1t'
           cache: 'poetry'
+      - name: Install Poetry
+        run: pip install poetry    
       - run: poetry install --no-root
   
