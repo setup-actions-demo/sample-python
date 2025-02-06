@@ -1,0 +1,37 @@
+name: Test python-version inputs
+
+on: [push, pull_request]
+
+jobs:
+   test-pip-cache:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: priyagupta108/setup-python@test-pr-973
+        with:
+          python-version: '3.13.1t'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+
+   test-poetry-cache:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install poetry
+        run: pipx install poetry  
+      - name: Set up Python
+        uses: priyagupta108/setup-python@test-pr-973
+        with:
+          python-version: '3.13.1t'
+          cache: 'poetry'
+      - run: poetry install --no-root
+  
