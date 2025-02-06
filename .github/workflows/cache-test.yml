@@ -14,8 +14,12 @@ jobs:
       - name: Set up Python
         uses: priyagupta108/setup-python@test-pr-973
         with:
+          id: test1
           python-version: '3.13.1t'
           cache: 'pip'
+
+      - run: echo '${{ steps.test1.outputs.python-version }}'    
+
       - run: pip install -r requirements.txt
 
    test-poetry-cache:
@@ -32,9 +36,12 @@ jobs:
       - name: Set up Python
         uses: priyagupta108/setup-python@test-pr-973
         with:
+          id: test2
           python-version: '3.13.1t'
           cache: 'poetry' 
-        
+
+      - run: echo '${{ steps.test2.outputs.python-version }}'
+
       - run: poetry install --no-root
   
    test-pipenv-cache:
@@ -49,9 +56,13 @@ jobs:
       - name: Set up Python
         uses: priyagupta108/setup-python@test-pr-973
         with:
+          id: test3
           python-version: '3.13.1t'
           cache: 'pipenv'
-        
+
+      - run: echo '${{ steps.test3.outputs.python-version }}'  
+
       - name: Install pipenv
+
         run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
       - run: pipenv install
