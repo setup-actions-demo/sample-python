@@ -13,8 +13,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Set up Python
         uses: priyagupta108/setup-python@test-pr-973
+        id: test1
         with:
-          id: test1
           python-version: '3.13.1t'
           cache: 'pip'
 
@@ -35,8 +35,8 @@ jobs:
      
       - name: Set up Python
         uses: priyagupta108/setup-python@test-pr-973
+        id: test2
         with:
-          id: test2
           python-version: '3.13.1t'
           cache: 'poetry' 
 
@@ -55,8 +55,8 @@ jobs:
      
       - name: Set up Python
         uses: priyagupta108/setup-python@test-pr-973
+        id: test3
         with:
-          id: test3
           python-version: '3.13.1t'
           cache: 'pipenv'
 
