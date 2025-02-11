@@ -9,6 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
+        version: ['3.13.1t', '3.13.1']
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -16,7 +17,7 @@ jobs:
         uses: priyagupta108/setup-python@test-pr-973
         id: test1
         with:
-          python-version: '3.13.1t'
+          python-version: ${{ matrix.version }}
           cache: 'pip'
 
       - run: echo '${{ steps.test1.outputs.python-version }}'    
@@ -28,6 +29,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
+        version: ['3.13.1t', '3.13.1']
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,7 +40,7 @@ jobs:
         uses: priyagupta108/setup-python@test-pr-973
         id: test2
         with:
-          python-version: '3.13.1t'
+          python-version: ${{ matrix.version }}
           cache: 'poetry' 
 
       - run: echo '${{ steps.test2.outputs.python-version }}'
@@ -50,6 +52,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
+        version: ['3.13.1t', '3.13.1']
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -58,7 +61,7 @@ jobs:
         uses: priyagupta108/setup-python@test-pr-973
         id: test3
         with:
-          python-version: '3.13.1t'
+          python-version: ${{ matrix.version }}
           cache: 'pipenv'
 
       - run: echo '${{ steps.test3.outputs.python-version }}'  
