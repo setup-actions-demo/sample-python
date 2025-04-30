@@ -1,0 +1,22 @@
+name: Reproduce Verbose Output Issue with Dynamic Python Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      python-version:
+        description: 'Python version to set up (e.g., 3.9, 3.10, etc.)'
+        required: true
+        default: '3.8.9'
+
+jobs:
+  test-verbose-output:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python (Fresh Download)
+        uses: actions/setup-python@v5.6.0
+        with:
+          python-version: ${{ github.event.inputs.python-version }}
